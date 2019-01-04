@@ -1,7 +1,8 @@
-# decisions
+# consilium
 
 ## Project setup
 ```
+nvm use # if you use nvm
 npm install
 ```
 
@@ -27,3 +28,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### TODO
+
+* Add a deeplinking for sharing
+* Add support for Gitlab repositories
