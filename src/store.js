@@ -41,6 +41,12 @@ export default new Vuex.Store({
         activities(state) {
             return state.repos.map(x => x.getStatByName('activity').value);
         },
+        shareLink(state) {
+            let loc = window.location;
+            let baseUrl = `${loc.protocol}//${loc.host}`;
+            let r = state.repos.map(x => x.name.replace('/', '|')).join('+');
+            return `${baseUrl}?r=${r}`;
+        },
     },
     mutations: {
         INCREMENT_COUNT(state) {
