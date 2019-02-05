@@ -8,6 +8,11 @@
         <p>
             Use the relative url, omitting `https://github.com/`...
         </p>
+        <a v-bind:href="shareLink"
+            class="share-link"
+            target="_blank">
+            Share this comparison!
+        </a>
     </header>
 
     <form @submit.prevent="compare">
@@ -52,6 +57,27 @@ import Chart from 'chart.js';
 import { mapState, mapActions, mapGetters } from 'vuex';
 import common from './app.scss'; // eslint-disable-line no-unused-vars
 
+
+function getQueryStringParams(queryString) {
+    let params = {}, queries, temp, i, l;
+    queries = queryString.split('&');
+    for (i = 0, l = queries.length; i < l; i++ ) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+    }
+    return params;
+}
+
+function getReposFromQueryString() {
+    const qs = getQueryStringParams(window.location.search.substring(1));
+    if (qs.hasOwnProperty('r')) {
+        let repoNames = qs.r.split('+');
+        if (repoNames.length === 2)
+            return repoNames.map(x => x.replace('|', '/'));
+    }
+    return null;
+}
+
 function chartFactory(
     id,
     chartType,
@@ -86,6 +112,7 @@ export default {
             'errors',
             'errorsPresent',
             'someStatLoaded',
+            'shareLink',
         ]),
         ctaLabel() {
             return this.loading ? '...' : 'compare';
@@ -129,6 +156,12 @@ export default {
         },
     },
     mounted() {
+        const qsRepos = getReposFromQueryString();
+        if (qsRepos !== null) {
+            this.repos[0].name = qsRepos[0];
+            this.repos[1].name = qsRepos[1];
+            this.compare();
+        }
         this.activityChart = chartFactory(
             'activity',
             'line',

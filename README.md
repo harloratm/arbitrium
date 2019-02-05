@@ -31,5 +31,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### TODO
 
-* Add a deeplinking for sharing
+* ~~Add a deeplinking for sharing~~
 * Add support for Gitlab repositories

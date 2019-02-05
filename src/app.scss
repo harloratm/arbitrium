@@ -12,6 +12,7 @@
 $main-font: "Source Code Pro", monospace;
 $aria: 20px;
 $p1: #18154F;
+$p1-l: lighten(#18154F, 5);
 $p1-d: #090930;
 $p2: #FFF;
 $p3: #FFD18C;
@@ -68,6 +69,7 @@ a {
 
 header {
     padding: $aria;
+    position: relative;
     text-align: center;
 }
 
@@ -228,5 +230,21 @@ input {
         font-size: 14px;
         font-weight: bold;
         line-height: 1.2;
+    }
+}
+
+.share-link {
+    position: absolute;
+    top: 0;
+    right: -$aria;
+    font-size: 12px;
+    text-decoration: none;
+    padding: $aria / 2 $aria;
+    background-color: $p1-d;
+    border-radius: 0 0 10px 10px;
+
+    &:hover {
+        background-color: $p1-l;
+        color: $p3;
     }
 }
