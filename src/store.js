@@ -43,7 +43,7 @@ export default new Vuex.Store({
         },
         shareLink(state) {
             let loc = window.location;
-            let baseUrl = `${loc.protocol}//${loc.host}`;
+            let baseUrl = `${loc.protocol}//${loc.host}${location.pathname}`;
             let r = state.repos.map(x => x.name.replace('/', '|')).join('+');
             return `${baseUrl}?r=${r}`;
         },
