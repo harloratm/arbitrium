@@ -1,7 +1,5 @@
 module.exports = {
-    baseUrl: process.env.NODE_ENV === 'production'
-        ? '/consilium/'
-        : '/',
+    baseUrl: '/',
     productionSourceMap: false,
     configureWebpack: {
         entry: ['./src/main.js',],
