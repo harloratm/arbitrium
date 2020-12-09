@@ -1,5 +1,5 @@
 module.exports = {
-    baseUrl: '/',
+    publicPath: '/',
     productionSourceMap: false,
     configureWebpack: {
         entry: ['./src/main.js',],
