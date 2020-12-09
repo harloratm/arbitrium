@@ -55,7 +55,6 @@
 import Chart from 'chart.js';
 
 import { mapState, mapActions, mapGetters } from 'vuex';
-import common from './app.scss'; // eslint-disable-line no-unused-vars
 
 
 function getQueryStringParams(queryString) {

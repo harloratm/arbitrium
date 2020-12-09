@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import store from './store';
 import Chart from 'chart.js';
+import './app.css';
 
 Vue.config.productionTip = false;
 Chart.defaults.global.defaultFontFamily = 'Source Code Pro';
