@@ -52,8 +52,6 @@
 </template>
 
 <script>
-import Chart from 'chart.js';
-
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 
@@ -77,15 +75,16 @@ function getReposFromQueryString() {
     return null;
 }
 
-function chartFactory(
+async function chartFactory(
     id,
     chartType,
     labels,
 ) {
-    return new Chart(
+    const Chart = await import('chart.js');
+    return new Chart.default(
         document.getElementById(id).getContext('2d'),
         {
-           type: chartType,
+            type: chartType,
             data: {
                 labels,
                 datasets: [{data: [],}, {data: [],},],
@@ -161,16 +160,20 @@ export default {
             this.repos[1].name = qsRepos[1];
             this.compare();
         }
-        this.activityChart = chartFactory(
-            'activity',
-            'line',
-            [...Array.from(Array(53).keys()).filter(x => x > 0)],
-        );
-        this.infoChart = chartFactory(
-            'info',
-            'bar',
-            ['forks', 'open issues', 'stars', 'subscribers'],
-        );
+        const createCharts = async () => [
+            await chartFactory(
+                'activity',
+                'line',
+                [...Array.from(Array(53).keys()).filter(x => x > 0)],
+            ),
+            await chartFactory(
+                'info',
+                'bar',
+                ['forks', 'open issues', 'stars', 'subscribers'],
+            ),
+        ];
+
+        createCharts().then(charts => [this.activityChart, this.infoChart] = charts);
     },
 };
 </script>
