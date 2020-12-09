@@ -1,14 +1,6 @@
 @import './sass/lib.reset';
 
 
-@font-face {
-    font-family: Deciso;
-    font-style: italic;
-    font-weight: 700;
-    src: url(./sass/Deciso-BoldItalic.otf) format("opentype");
-}
-
-
 $main-font: "Source Code Pro", monospace;
 $aria: 20px;
 $p1: #18154F;
@@ -80,7 +72,6 @@ footer {
 
 h1 {
     color: $p3;
-    font-family: "Deciso", monospace;
     font-style: italic;
     font-weight: bold;
     font-size: 64px;
