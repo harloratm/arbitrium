@@ -16,20 +16,7 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 ### TODO
 
-* ~~Add a deeplinking for sharing~~
+* ~~Add deeplinking for sharing~~
 * Add support for Gitlab repositories
