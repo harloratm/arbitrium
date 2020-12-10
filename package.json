@@ -20,6 +20,8 @@
     "@vue/cli-service": "^4.5.9",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
+    "browserslist": "^4.15.0",
+    "caniuse-lite": "^1.0.30001165",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"
