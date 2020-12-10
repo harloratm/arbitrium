@@ -109,7 +109,7 @@ h1.loading:before,
 h1.loading:after,
 h1:hover:before,
 h1:hover:after {
-    content: "CONSILIUM";
+    content: "ARBITRIUM";
     letter-spacing: inherit;
     padding: var(--air);
     position: absolute;

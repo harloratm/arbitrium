@@ -1,4 +1,4 @@
-# consilium
+# arbitrium
 
 ## Project setup
 ```

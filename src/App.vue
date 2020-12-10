@@ -1,7 +1,7 @@
 <template>
 <main id="app" class="limit">
     <header>
-        <h1 :class="{'loading': loading}">consilium</h1>
+        <h1 :class="{'loading': loading}">arbitrium</h1>
         <p>
             Quickly compare 2 open source projects.
         </p>
