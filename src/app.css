@@ -250,3 +250,52 @@ main {
     background-color: var(--sea-d);
     border-radius: 0 0 10px 10px;
 }
+
+.ct-series-a .ct-line,
+.ct-series-b .ct-line {
+  stroke-width: 2px;
+}
+
+.ct-series-a .ct-line,
+.ct-series-a .ct-bar,
+.ct-series-a .ct-point {
+    stroke: #3fb984 !important;
+}
+
+.ct-series-b .ct-line,
+.ct-series-b .ct-bar,
+.ct-series-b .ct-point {
+    stroke: #4c6290 !important;
+}
+
+.ct-series-a .ct-point,
+.ct-series-b .ct-point {
+  stroke-width: 5px;
+}
+
+.ct-series-a .ct-bar,
+.ct-series-b .ct-bar {
+  stroke-width: 10px;
+}
+
+.ct-label.ct-label.ct-vertical.ct-start {
+  position: relative;
+  text-align: right;
+  right: -10px;
+  top: 5px;
+}
+
+.stats {
+    padding: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .stats > * {
+        width: 100%;
+    }
+
+    .stats > * + * {
+        margin-left: 0;
+        margin-top: calc(var(--air) / 2);
+    }
+}

@@ -40,12 +40,12 @@
     <section class="stats" v-show="!errorsPresent && someStatLoaded">
         <div class="stat">
             <h2>General numbers</h2>
-            <canvas id="info" width="400" height="200"></canvas>
+            <div id="info" class="ct-minor-seventh"></div>
         </div>
 
         <div class="stat">
             <h2>Number of commits during last year (52 weeks)</h2>
-            <canvas id="activity" width="400" height="200"></canvas>
+            <div id="activity" class="ct-minor-seventh"></div>
         </div>
     </section>
 </main>
@@ -75,27 +75,6 @@ function getReposFromQueryString() {
     return null;
 }
 
-async function chartFactory(
-    id,
-    chartType,
-    labels,
-) {
-    const Chart = await import('chart.js');
-    return new Chart.default(
-        document.getElementById(id).getContext('2d'),
-        {
-            type: chartType,
-            data: {
-                labels,
-                datasets: [{data: [],}, {data: [],},],
-            },
-        }, {
-            responsive: false,
-            maintainAspectRatio: false,
-        }
-    );
-}
-
 export default {
     name: 'app',
     computed: {
@@ -118,28 +97,21 @@ export default {
     },
     watch: {
         activities() {
-            for (let i = 0; i < this.repos.length; i++) {
-                let ds = this.activityChart.data.datasets[i];
-                let repo = this.repos[i];
-                ds.label = repo.name;
-                ds.borderColor = repo.color;
-                ds.backgroundColor = 'transparent';
-                ds.tension = 0;
-                ds.data = this.activities[i];
+            if (this.activities.every(x => x)) {
+                const data = {
+                    series: this.activities,
+                };
+                this.activityChart.update(data);
             }
-            this.activityChart.update();
         },
         info() {
-            for (let i = 0; i < this.repos.length; i++) {
-                let ds = this.infoChart.data.datasets[i];
-                let repo = this.repos[i];
-                ds.label = repo.name;
-                ds.borderColor = repo.color;
-                ds.backgroundColor = repo.color;
-                ds.tension = 0;
-                ds.data = this.info[i];
+            if (this.info.every(x => x)) {
+                const data = {
+                    labels: this.infoChart.data.labels,
+                    series: this.info,
+                };
+                this.infoChart.update(data);
             }
-            this.infoChart.update();
         },
     },
     methods: {
@@ -160,18 +132,20 @@ export default {
             this.repos[1].name = qsRepos[1];
             this.compare();
         }
-        const createCharts = async () => [
-            await chartFactory(
-                'activity',
-                'line',
-                [...Array.from(Array(53).keys()).filter(x => x > 0)],
-            ),
-            await chartFactory(
-                'info',
-                'bar',
-                ['forks', 'open issues', 'stars', 'subscribers'],
-            ),
-        ];
+        const createCharts = async () => {
+            const ChartLibrary = await import('chartist');
+            await import('chartist/dist/chartist.min.css');
+            return [
+                ChartLibrary.default.Line('#activity',
+                {
+                    labels: [...Array.from(Array(53).keys()).filter(x => x > 0)],
+                }),
+                ChartLibrary.default.Bar('#info',
+                {
+                    labels: ['forks', 'open issues', 'stars', 'subscribers'],
+                }),
+            ];
+        };
 
         createCharts().then(charts => [this.activityChart, this.infoChart] = charts);
     },
