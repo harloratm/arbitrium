@@ -37,6 +37,11 @@
         Please, try again!
     </div>
 
+    <div class="legend" v-show="!errorsPresent && someStatLoaded">
+        <span class="legend-line">{{ repos[0].name }}</span>
+        <span class="legend-line">{{ repos[1].name }}</span>
+    </div>
+
     <section class="stats" v-show="!errorsPresent && someStatLoaded">
         <div class="stat">
             <h2>General numbers</h2>

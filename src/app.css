@@ -289,6 +289,34 @@ main {
     padding: 10px;
 }
 
+.legend {
+  text-align: center;
+  font-size: 14px;
+}
+
+.legend > span::before {
+    content: "";
+    display: inline-block;
+    height: 14px;
+    margin-right: 6px;
+    width: 24px;
+}
+
+.legend > span:first-child::before {
+    background-color: #3fb984;
+}
+
+.legend > span:last-child::before {
+    background-color: #4c6290;
+}
+
+.legend > span {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
 @media only screen and (max-width: 1024px) {
     .stats > * {
         width: 100%;
